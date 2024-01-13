@@ -10,4 +10,5 @@ public interface ITouristMgmtService {
 	public Tourist fetToursitById(Integer id);
 	public String updateTouristByDetails(Tourist tourist);
 	public String updateTouristBudgetById(Integer id, Float hikePercent);
+	public String deleteTouristById(Integer id);
 }

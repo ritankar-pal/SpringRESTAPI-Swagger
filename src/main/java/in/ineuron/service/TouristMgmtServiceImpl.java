@@ -84,6 +84,21 @@ public class TouristMgmtServiceImpl implements ITouristMgmtService{
 		throw  new TouristNotFoundException("Tourist with the id: " + id + " not found");
 	}
 
+
+	@Override
+	public String deleteTouristById(Integer id) {
+		
+		Optional<Tourist> optional = repo.findById(id);
+		
+		if (optional.isPresent()) {
+			repo.delete(optional.get());
+			return "Tourist with ID: " + id + " deleted.";
+		}
+		
+		throw new TouristNotFoundException("Tourist Failed To Delete.");
+		
+	}
+
 }
 
 

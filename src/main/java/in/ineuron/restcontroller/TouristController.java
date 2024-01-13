@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -92,6 +93,20 @@ public class TouristController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 				
+	}
+	
+	
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<String> deleteTouristByID(@PathVariable(value = "id") Integer id){
+		
+		try {
+			String result = service.deleteTouristById(id);
+			return new ResponseEntity<String>(result, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+		
 	}
 	
 }
