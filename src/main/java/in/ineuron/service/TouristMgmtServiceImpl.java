@@ -81,7 +81,7 @@ public class TouristMgmtServiceImpl implements ITouristMgmtService{
 			
 		}
 		
-		throw  new TouristNotFoundException("Tourist with the id: " + id + " not found");
+		throw new TouristNotFoundException("Tourist with the id: " + id + " not found");
 	}
 
 

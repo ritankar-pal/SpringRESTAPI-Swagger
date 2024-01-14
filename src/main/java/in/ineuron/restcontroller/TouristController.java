@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import in.ineuron.model.Tourist;
 import in.ineuron.service.ITouristMgmtService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
-@RequestMapping(value = "/api/tourist")
+@RequestMapping("/api/tourist")
+@Tag(name = "TouristController")
 public class TouristController {
 
 	@Autowired
@@ -28,6 +31,11 @@ public class TouristController {
 
 
 	@PostMapping(value = "/register")
+	@Operation(
+
+			summary = "Tourist Registration",
+			description = "To Register New Tourists"
+			)
 	public ResponseEntity<String> enrollTourist(@RequestBody Tourist tourist){
 
 		String resultMsg = service.registerTourist(tourist);
@@ -36,6 +44,10 @@ public class TouristController {
 
 
 	@GetMapping(value = "/findAll")
+	@Operation(
+			summary = "GET All Tourists",
+			description = "Display All The Tourist Details"
+			)
 	public ResponseEntity<?> displayTouristDetails(){
 
 		List<Tourist> tourists = service.fetchAllTourists();
@@ -44,6 +56,11 @@ public class TouristController {
 
 
 	@GetMapping(value = "/find/{id}")
+	@Operation(
+
+			summary = "GET Tourist By ID",
+			description = "To Register New Tourists"
+			)
 	public ResponseEntity<?> displayTouristById(@PathVariable(value = "id") Integer id){
 
 		Tourist tourist = service.fetToursitById(id);
@@ -52,6 +69,11 @@ public class TouristController {
 	}
 
 	@PutMapping(value = "/modify")
+	@Operation(
+
+			summary = "Update Tourist Details",
+			description = "To Register New Tourists"
+			)
 	public ResponseEntity<String> updateTourist(@RequestBody Tourist tourist){
 
 		String result = service.updateTouristByDetails(tourist);
@@ -61,6 +83,11 @@ public class TouristController {
 
 
 	@PatchMapping(value = "/budgetModify/{id}/{hike}")
+	@Operation(
+
+			summary = "Update Tourist Budget",
+			description = "To Register New Tourists"
+			)
 	public ResponseEntity<String> modifyTouristBudgetById(@PathVariable(value = "id") Integer id, @PathVariable("hike") Float hike){
 
 		String result = service.updateTouristBudgetById(id, hike);
@@ -70,6 +97,11 @@ public class TouristController {
 
 
 	@DeleteMapping(value = "/delete/{id}")
+	@Operation(
+
+			summary = "DELETE Tourist",
+			description = "To Register New Tourists"
+			)
 	public ResponseEntity<String> deleteTouristByID(@PathVariable(value = "id") Integer id){
 
 		String result = service.deleteTouristById(id);
